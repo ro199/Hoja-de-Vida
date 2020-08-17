@@ -1,11 +1,7 @@
 from django.db import models
-from profile.models import Profile
+from profile.models import Profile, upload_path
 
 # Create your models here.
-
-
-def upload_path(instance, filename):
-    return '/'.join(['course', str(instance.first_name), filename])
 
 
 class Certificate(models.Model):
