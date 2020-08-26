@@ -4,6 +4,10 @@ from phone_field import PhoneField
 # Create your models here.
 
 
+def upload_path(instance, filename):
+    return '/'.join(['course', str(instance.first_name), filename])
+
+
 class Skill(models.Model):
     technical = models.CharField(max_length=50)
     professional = models.CharField(max_length=50)
@@ -13,6 +17,8 @@ class Skill(models.Model):
 class Profile(models.Model):
     ci = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=200)
+    photo = models.ImageField(
+        blank=True, null=True, upload_to=upload_path, height_field=None, width_field=None, max_length=None)
     email_p = models.EmailField(max_length=100, unique=True)
     email_j = models.EmailField(max_length=100, unique=True)
     phone_number = PhoneField(blank=True, help_text='Contact phone number')
