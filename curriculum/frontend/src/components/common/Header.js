@@ -1,45 +1,62 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import about from "../../../static/frontend/images/about1.jpg";
+import { ImFacebook2, ImLinkedin, ImGithub } from "react-icons/im";
+import { AiOutlineCopyrightCircle } from "react-icons/ai";
 
 const Header = () => {
   return (
     <div>
-      <a
-        href="#"
+      <nav
+        href="#navbar"
         className="js-colorlib-nav-toggle colorlib-nav-toggle"
         data-toggle="collapse"
         data-target="#navbar"
         aria-expanded="false"
         aria-controls="navbar"
       >
-        <i></i>
-      </a>
-      <aside
-        id="colorlib-aside"
-        role="complementary"
-        className="border js-fullheight"
-      >
+        <i />
+      </nav>
+      <aside id="colorlib-aside" className="border js-fullheight">
         <div className="text-center">
           <img className="author-img" src={about} />
           <h1 id="colorlib-logo">
             <NavLink to="/">Ronald Alvarado</NavLink>
           </h1>
-          <span className="position">
-            <NavLink to="/">Programador</NavLink> En Ecuador
+          <span style={{ fontFamily: "Times New Roman" }}>
+            Hola, mi nombre es Ronald Alvarado, soy estudiante de Ingeniería en
+            Sistemas Informáticos y de Computación. ¡Bienvenido a mi sitio web
+            personal!
           </span>
         </div>
+        <hr />
+
+        <div className="text-center">
+          <ul className="social-list list-inline py-20 mx-auto">
+            <li className="list-inline-item">
+              <a href="#">
+                <ImLinkedin style={{ fontSize: "30px" }} />
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">
+                <ImFacebook2 style={{ fontSize: "30px" }} />
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">
+                <ImGithub style={{ fontSize: "30px" }} />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr />
         <nav id="colorlib-main-menu" role="navigation" className="navbar">
-          <div id="navbar" className="collapse navbar-collapse">
+          <div id="navbar" className="collapse">
             <ul>
-              <li className="active">
-                <NavLink to="/" data-nav-section="home">
-                  Home
-                </NavLink>
-              </li>
               <li>
                 <NavLink to="/about" data-nav-section="about">
-                  About
+                  Acerca de mi
                 </NavLink>
               </li>
               <li>
@@ -53,23 +70,8 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/" data-nav-section="education">
-                  Education
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/" data-nav-section="experience">
-                  Experience
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/" data-nav-section="work">
-                  Work
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/" data-nav-section="blog">
-                  Blog
+                <NavLink to="/project" data-nav-section="project">
+                  Portafolio
                 </NavLink>
               </li>
               <li>
@@ -80,6 +82,22 @@ const Header = () => {
             </ul>
           </div>
         </nav>
+
+        <div className="colorlib-footer">
+          <p>
+            <small></small>
+          </p>
+          <p>
+            <small></small>
+          </p>
+          <p>
+            <small>
+              <AiOutlineCopyrightCircle />{" "}
+              <script>document.write(new Date().getFullYear());</script>{" "}
+              Copyright Ronald Alvarado
+            </small>
+          </p>
+        </div>
       </aside>
     </div>
   );

@@ -1,9 +1,9 @@
 /* =======================================================
-  *
-  * 	Template Style 
-  *	Edit this section
-  *
-  * ======================================================= */
+*
+* 	Template Style 
+*	Edit this section
+*
+* ======================================================= */
 body {
   font-family: "Quicksand", Arial, sans-serif;
   font-weight: 400;
@@ -280,7 +280,6 @@ figure figcaption {
 
 #colorlib-hero {
   min-height: 500px;
-  background: #fff no-repeat center center;
   width: 100%;
   float: left;
   margin-bottom: 10em;

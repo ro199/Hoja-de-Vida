@@ -5,13 +5,12 @@ from phone_field import PhoneField
 
 
 def upload_path(instance, filename):
-    return '/'.join(['course', str(instance.first_name), filename])
+    return '/'.join(['course', str(instance.full_name), filename])
 
 
 class Skill(models.Model):
     technical = models.CharField(max_length=50)
     professional = models.CharField(max_length=50)
-    language = models.CharField(max_length=50)
 
 
 class Profile(models.Model):
@@ -24,7 +23,7 @@ class Profile(models.Model):
     phone_number = PhoneField(blank=True, help_text='Contact phone number')
     direction = models.CharField(max_length=200)
     url_linked = models.URLField(max_length=200)
-    message = models.CharField(max_length=500)
+    message = models.CharField(max_length=1000)
     skills = models.ManyToManyField(
         Skill, blank=True, null=True, related_name="profileSkill")
 

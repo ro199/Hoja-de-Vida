@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Certificate = () => {
+  const [certificate, setCertificate] = useState([]);
+  const [error, setError] = useState(false);
+
+  async function fetchData() {
+    const url = "http://127.0.0.1:8000/api/certificate/";
+    const res = await fetch(url);
+
+    res
+      .json()
+      .then((res) => setCertificate(res))
+      .catch((err) => setError(err));
+  }
+
+  useEffect(() => {
+    fetchData();
+    console.log(error);
+  }, []);
+
   return (
     <div>
       <section className="colorlib-about" data-section="certificate">
@@ -22,8 +40,14 @@ const Certificate = () => {
                     <h2 className="colorlib-heading">
                       Cursos y Certificaciones
                     </h2>
-                    <h2 className="colorlib-hero"></h2>
-                    <div></div>
+                    {certificate.map((cer) => (
+                      <div key={cer.id}>
+                        <h4 className="colorlib-hero">{cer.course_name}</h4>
+                        <div></div>
+                        <img className="img-fluid" src={cer.img}></img>
+                        <hr />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
