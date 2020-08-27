@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Contact = () => {
+  const [datos, setDatos] = useState({ nombre: "", email: "", mensaje: "" });
+
+  const handleInputChange = (event) => {
+    setDatos({
+      ...datos,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const enviarDatos = (e) => {
+    e.preventDefault();
+    console.log("Enviando datos...." + JSON.stringify(datos));
+  };
   return (
     <div>
       <section className="colorlib-about" data-section="certificate">
@@ -19,6 +32,56 @@ const Contact = () => {
                       ¿Estás interesado en contratarme o solo quieres saludarme?
                     </h5>
                     <div></div>
+                    <div className="container">
+                      <form
+                        className="contact-form col-lg-8 mx-lg-auto"
+                        onSubmit={enviarDatos}
+                      >
+                        <h3 className="text-center mb-3">Contáctame</h3>
+                        <div className="form-row">
+                          <div className="form-group col-12">
+                            <input
+                              className="form-control"
+                              type="text"
+                              name="nombre"
+                              placeholder="Nombre"
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group col-12">
+                            <input
+                              className="form-control"
+                              type="email"
+                              name="email"
+                              placeholder="Email"
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group col-12">
+                            <textarea
+                              className="form-control"
+                              type="text"
+                              name="mensaje"
+                              placeholder="Ingrese su mensaje"
+                              rows="10"
+                              cols="40"
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group col-12">
+                            <button
+                              className="btn btn-block btn-primary py-2"
+                              type="submit"
+                            >
+                              Enviar Ahora
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
