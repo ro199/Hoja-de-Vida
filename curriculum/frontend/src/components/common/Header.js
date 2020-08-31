@@ -39,12 +39,20 @@ const Header = () => {
               </a>
             </li>
             <li className="list-inline-item">
-              <a href="#">
+              <a
+                href="https://www.facebook.com/ronaldalvardo/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ImFacebook2 style={{ fontSize: "30px" }} />
               </a>
             </li>
             <li className="list-inline-item">
-              <a href="#">
+              <a
+                href="https://www.github.com/ro199"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ImGithub style={{ fontSize: "30px" }} />
               </a>
             </li>
@@ -55,7 +63,7 @@ const Header = () => {
           <div id="navbar" className="collapse">
             <ul>
               <li>
-                <NavLink to="/about" data-nav-section="about">
+                <NavLink to="/" data-nav-section="about">
                   Acerca de mi
                 </NavLink>
               </li>

@@ -16,7 +16,7 @@ const Contact = () => {
   };
   return (
     <div>
-      <section className="colorlib-about" data-section="certificate">
+      <section className="colorlib-contact" data-section="certificate">
         <div className="colorlib-narrow-content">
           <div className="row">
             <div className="col-md-12">
@@ -25,7 +25,7 @@ const Contact = () => {
                 data-animate-effect="fadeInLeft"
               >
                 <div className="col-md-12">
-                  <div className="about-desc">
+                  <div className="contact-asc">
                     <h2 className="colorlib-heading">Contacto</h2>
                     <h5 className="colorlib-hero text-center">
                       {" "}

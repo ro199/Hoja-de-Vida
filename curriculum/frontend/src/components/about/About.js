@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   const [hasError, setError] = useState(false);
@@ -84,9 +85,9 @@ const About = () => {
                       vistazo a mi portafolio de proyectos y mi currículum en
                       línea.
                     </h2>
-                    <a href="#" className="btn-hire">
+                    <Link to="/contact" className="btn-hire">
                       Contrátame
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -94,8 +95,16 @@ const About = () => {
               <div className="row">
                 <div className="col-md-12 animate-box">
                   <div>
-                    <button className="btn btn-primary">Ver Portafolio</button>
-                    <button className="btn btn-primary">Ver Currículum</button>
+                    <button className="btn btn-primary">
+                      <Link to="/project" style={{ color: "white" }}>
+                        Ver Portafolio
+                      </Link>
+                    </button>
+                    <button className="btn btn-primary">
+                      <Link to="/curriculum" style={{ color: "white" }}>
+                        Ver Currículum
+                      </Link>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -15,11 +15,11 @@ function App() {
         <Header />
         <div id="colorlib-main">
           <Switch>
-            <Route exact path="/about" component={About} />
-            <Route exact path="/certificate" component={Certificate} />
-            <Route exact path="/curriculum" component={Curriculum} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/project" component={Project} />
+            <Route exact path="/" component={About} />
+            <Route path="/certificate" component={Certificate} />
+            <Route path="/curriculum" component={Curriculum} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/project" component={Project} />
             <Route component={PageNotFound} />
           </Switch>
         </div>
