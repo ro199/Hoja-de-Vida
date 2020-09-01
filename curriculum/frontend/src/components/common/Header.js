@@ -34,7 +34,7 @@ const Header = () => {
         <div className="text-center">
           <ul className="social-list list-inline py-20 mx-auto">
             <li className="list-inline-item">
-              <a href="#">
+              <a href="https://www.linkedin.com/in/ronald-alvarado-049082179/">
                 <ImLinkedin style={{ fontSize: "30px" }} />
               </a>
             </li>
