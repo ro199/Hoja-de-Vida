@@ -3,10 +3,6 @@ from .serializers import ContactSerializer
 from .models import Contact
 
 
-class ContactViewSet(viewsets.ModelViewSet):
+class ContactSendEmail(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
-    permissions_classes = [
-        permissions.AllowAny
-    ]
-
     serializer_class = ContactSerializer

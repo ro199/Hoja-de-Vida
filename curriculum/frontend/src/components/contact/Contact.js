@@ -1,7 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import NotificationSystem from "react-notification-system";
+import { notification } from "../common/Notification";
 
 const Contact = () => {
-  const [datos, setDatos] = useState({ nombre: "", email: "", mensaje: "" });
+  const [datos, setDatos] = useState({});
+  const notificationSystem = useRef(null);
+
+  async function fetchData() {
+    const url = "http://127.0.0.1:8000/api/contact/";
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(datos),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.ok) {
+      setDatos({});
+      notification(
+        notificationSystem,
+        "Su mensaje ha sido enviado, pronto recibirá una respuesta. Gracias",
+        "success"
+      );
+    } else {
+      notification(
+        notificationSystem,
+        "Su mensaje no se ha podido enviar inténtelo mas tarde. Gracias",
+        "error"
+      );
+    }
+  }
 
   const handleInputChange = (event) => {
     setDatos({
@@ -13,10 +41,11 @@ const Contact = () => {
   const enviarDatos = (e) => {
     e.preventDefault();
     console.log("Enviando datos...." + JSON.stringify(datos));
+    fetchData();
   };
   return (
     <div>
-      <section className="colorlib-about" data-section="certificate">
+      <section className="colorlib-contact" data-section="certificate">
         <div className="colorlib-narrow-content">
           <div className="row">
             <div className="col-md-12">
@@ -25,7 +54,7 @@ const Contact = () => {
                 data-animate-effect="fadeInLeft"
               >
                 <div className="col-md-12">
-                  <div className="about-desc">
+                  <div className="contact-asc">
                     <h2 className="colorlib-heading">Contacto</h2>
                     <h5 className="colorlib-hero text-center">
                       {" "}
@@ -43,9 +72,10 @@ const Contact = () => {
                             <input
                               className="form-control"
                               type="text"
-                              name="nombre"
+                              name="contact_name"
                               placeholder="Nombre"
                               onChange={handleInputChange}
+                              value={datos.contact_name || ""}
                               required
                             />
                           </div>
@@ -53,9 +83,10 @@ const Contact = () => {
                             <input
                               className="form-control"
                               type="email"
-                              name="email"
+                              name="conact_email"
                               placeholder="Email"
                               onChange={handleInputChange}
+                              value={datos.conact_email || ""}
                               required
                             />
                           </div>
@@ -63,11 +94,12 @@ const Contact = () => {
                             <textarea
                               className="form-control"
                               type="text"
-                              name="mensaje"
+                              name="message"
                               placeholder="Ingrese su mensaje"
                               rows="10"
                               cols="40"
                               onChange={handleInputChange}
+                              value={datos.message || ""}
                               required
                             />
                           </div>
@@ -81,6 +113,7 @@ const Contact = () => {
                           </div>
                         </div>
                       </form>
+                      <NotificationSystem ref={notificationSystem} />
                     </div>
                   </div>
                 </div>
