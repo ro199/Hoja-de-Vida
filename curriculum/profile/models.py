@@ -31,6 +31,8 @@ class Profile(models.Model):
 class Project(models.Model):
     name_project = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+    name_place = models.CharField(max_length=150, default='')
+    url_project = models.URLField(max_length=200, default='')
     profile_project = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="profileProject")
 
@@ -53,3 +55,13 @@ class Education(models.Model):
     diploma = models.CharField(max_length=200)
     profile_Education = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="profileEducation")
+
+
+class WorkExperience(models.Model):
+    name_project = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    name_place = models.CharField(max_length=150)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    profile_work = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="profileWork")

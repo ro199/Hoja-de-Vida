@@ -12,6 +12,18 @@ const Curriculum = () => {
   const [reference, setReference] = useState([]);
   const [education, setEducation] = useState([]);
   const [skill, setSkill] = useState([]);
+  const [project, setProject] = useState([]);
+  const [certificate, setCertificate] = useState([]);
+
+  async function fetchData() {
+    const url = "http://127.0.0.1:8000/api/certificate/";
+    const res = await fetch(url);
+
+    res
+      .json()
+      .then((res) => setCertificate(res))
+      .catch((err) => console.log(err));
+  }
 
   async function fetchDataProfile() {
     const url = "http://127.0.0.1:8000/api/profile/";
@@ -49,11 +61,22 @@ const Curriculum = () => {
       .catch((err) => console.log(err));
   }
 
+  async function fetchDataProject() {
+    const url = "http://127.0.0.1:8000/api/project/";
+    const res = await fetch(url);
+    res
+      .json()
+      .then((res) => setProject(res))
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     fetchDataProfile();
     fetchDataReference();
     fetchDataEducation();
     fetchDataSkill();
+    fetchDataProject();
+    fetchData();
   }, []);
 
   return (
@@ -73,7 +96,9 @@ const Curriculum = () => {
                     <div className="col text-center">
                       <a
                         className="btn btn-primary"
-                        href="#"
+                        href="http://127.0.0.1:8000/media/documents/Curriculum-Vitae-Alvarado_Ronald.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{ color: "white" }}
                       >
                         <i className="mr-2"></i>
@@ -93,9 +118,9 @@ const Curriculum = () => {
                           <div className="profile-info">
                             <img src={pr.photo} alt="Foto de perfil" />
                             <h3>{pr.full_name}</h3>
-                            <span>Programador</span>
+                            <span>PROGRAMADOR</span>
                           </div>
-                          <h4 className="ltitle">Contactame</h4>
+                          <h4 className="ltitle">CONTACTAME</h4>
                           <div className="contact-box pb0">
                             <div className="icon">
                               <i>
@@ -124,7 +149,7 @@ const Curriculum = () => {
                             </div>
                             <div className="detail">{pr.direction}</div>
                           </div>
-                          <h4 className="ltitle">Redes Sociales</h4>
+                          <h4 className="ltitle">REDES SOCIALES</h4>
                           <ul className="row social-link no-margin">
                             <li>
                               <i>
@@ -145,13 +170,20 @@ const Curriculum = () => {
                               </i>
                             </li>
                           </ul>
-                          <h4 className="ltitle">Referencias Personales</h4>
+                          <h4 className="ltitle">REFERENCIAS PERSONALES</h4>
                           {reference.map((re) => (
                             <div className="refer-cov" key={re.id}>
                               <b>{re.contact_name}</b>
                               <p>Rol: {re.role}</p>
                               <p>Teléfono: {re.phone_number}</p>
                               <p>Correo Electrónico: {re.email}</p>
+                            </div>
+                          ))}
+                          <h4 className="ltitle">CURSOS Y CERTIFICACIONES</h4>
+                          {certificate.map((cert) => (
+                            <div className="refer-cov" key={cert.id}>
+                              <b>{cert.course_name}</b>
+                              <p>{cert.institution_name}</p>
                             </div>
                           ))}
                         </div>
@@ -161,13 +193,13 @@ const Curriculum = () => {
                         <div className="rit-cover">
                           <div className="hotkey">
                             <h1 className="">{pr.full_name}</h1>
-                            <small>Programador</small>
+                            <small>PROGRAMADOR</small>
                           </div>
                           <h2 className="rit-titl">
                             <i>
                               <FaUserTie />
                             </i>{" "}
-                            Perfil
+                            PERFIL
                           </h2>
                           <div className="about">
                             <p>{pr.message}</p>
@@ -177,35 +209,36 @@ const Curriculum = () => {
                             <i>
                               <BsFillBriefcaseFill />
                             </i>{" "}
-                            Experiencia Laboral
+                            PROYECTOS
                           </h2>
-                          <div className="work-exp">
-                            <h6>
-                              Junior Software Developer <span>2008-2011</span>
-                            </h6>
-                            <i>Microsoft / United States</i>
-                            <ul>
-                              <li>
-                                <i className="far fa-hand-point-right"></i>{" "}
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.
-                              </li>
-                              <li>
-                                <i className="far fa-hand-point-right"></i>{" "}
-                                Sorem dolor sit amet, consectetur.
-                              </li>
-                              <li>
-                                <i className="far fa-hand-point-right"></i>{" "}
-                                Porem ipsum sit amet, consectetur adipiscing
-                              </li>
-                            </ul>
-                          </div>
+                          {project.map((projects) => (
+                            <div className="work-exp" key={projects.id}>
+                              <h6 className={{ color: "black" }}>
+                                {" "}
+                                <a
+                                  href={projects.url_project}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {projects.name_project}
+                                </a>
+                                <span>Open Source</span>
+                              </h6>
+                              <i>{projects.name_place}</i>
+                              <ul>
+                                <li>
+                                  <i className="far fa-hand-point-right"></i>{" "}
+                                  {projects.description}
+                                </li>
+                              </ul>
+                            </div>
+                          ))}
 
                           <h2 className="rit-titl">
                             <i>
                               <IoIosSchool />
                             </i>{" "}
-                            Educacion
+                            EDUCACIÓN
                           </h2>
                           <div className="education">
                             {education.map((edu) => (
@@ -227,7 +260,7 @@ const Curriculum = () => {
                             <i>
                               <SiSkillshare />
                             </i>{" "}
-                            Skills
+                            SKILLS
                           </h2>
 
                           <div className="profess-cover row no-margin">
