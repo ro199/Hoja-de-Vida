@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   target: "web",
   devtool: "cheap-module-source-map",
-  entry: "./curriculum/frontend/src/index",
+  entry: { main: ["@babel/polyfill", "./curriculum/frontend/src/index.js"] },
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
@@ -21,6 +21,7 @@ module.exports = {
     disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
     https: false,
+    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
